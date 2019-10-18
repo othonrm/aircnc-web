@@ -14,7 +14,7 @@ export default function Dashboard({ history }) {
 
     const user_id = localStorage.getItem('user');
 
-    const socket = useMemo(() => socketio('https://othonrm-aircnc-web.herokuapp.com', {
+    const socket = useMemo(() => socketio('https://othonrm-aircnc-backend.herokuapp.com', {
         query: { user_id },
     }), [user_id]);
 
