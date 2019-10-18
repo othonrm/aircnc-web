@@ -66,6 +66,10 @@ export default function Dashboard({ history }) {
         setRequests(requests.filter(request => request._id !== booking_id));
     }
 
+    function handleLogout() {
+        localStorage.removeItem('user');
+        history.push('/');
+    }
 
     return (
         <>
@@ -97,9 +101,10 @@ export default function Dashboard({ history }) {
                 {
                     spots.map(spot => (
                         <li key={spot._id}>
-                            <header style={{ backgroundImage: `url(${spot.thumbnail_url})` }} />
+                            <header style={{ background: `url(${spot.thumbnail_url}), url(https://x.kinja-static.com/assets/images/logos/placeholders/default.png), #e0e0e0` }} />
                             <strong>{spot.company}</strong>
                             <span>{spot.price ? `R$${spot.price}/dia` : 'GRATUITO'}</span>
+                            <span style={{color: 'black', fontSize: '80%', marginTop: 6 }}>{spot.techs.join(', ')}</span>
                         </li>
                     ))
                 }
@@ -112,6 +117,10 @@ export default function Dashboard({ history }) {
                     Cadastrar novo spot
                 </button>
             </Link>
+
+            <button onClick={handleLogout} className="btn" style={{ transform: 'scale(0.8)', backgroundColor: '#fff', color: 'red', marginTop: 20, marginBottom: 0, height: 12 }}>
+                Logout
+            </button>
         </>
     )
 }
